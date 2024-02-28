@@ -15,3 +15,11 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
   - The above two can also be combined in a given NextJS app
   - Other frameworks, as well as CSS-in-JS libraries can also be used for styling of the app
   - Use the library `clsx` to help apply styles conditionally in TSX
+
+2. Optimizing Fonts and Images
+
+- Custom fonts are downloaded and stored as static assets during app build by NextJS
+- This allows for the font to be readily available to the app everytime it is loaded, reducing at least one network call
+- This also causes there to be no Cumulative Layout Shift (Layout shift created by the browser initially loading the app with a fallback font, then replacing it with the custom font once the network call has been completed)
+- Add google fonts based on their properties by importing them and applying them at the level required
+- Multiple fonts can be applied throughout the app. Ex: One font on the top level, that can be overridden by another font that is added to one or two specific elements deep in the apps dom.
