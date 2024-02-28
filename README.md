@@ -84,5 +84,13 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 - Server Components support promises, allowing simpler interface to async tasks like data fetching
 - Easily allows fetching data using simple `async/await` to fetch data instead of needing to use `useEffect` or `useState` in combination with data fetching libraries like axios
 - Using Server Components without a API layer, you can write extensive queries that do all the heavy lifting on the server side directly
+
   - App is much faster as you won't be doing any in-memory tasks unless it is absolutely necessary
   - Its good practice to delegate as many jobs to the appropriate workers than to let the frontend do the heavy-lifting
+
+- Request Waterfalls: Sequence of network requests that depend on the completion of previous requests
+  - There may be cases where you want this to happen, so it is not necessarily a bad pattern.
+  - Intentionality is key
+- Parallel Data Fetching:
+  - use `Promise.all()` or `Promise.allSettled()` to make data requests at the same time
+  - This works smoothly except for in cases where one or two of the requests are slower than the others.
