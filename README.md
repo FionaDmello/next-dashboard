@@ -4,7 +4,7 @@ This is the starter template for the Next.js App Router Course. It contains the 
 
 For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
 
-## Learnings
+## Notes
 
 1. CSS Styling
 
@@ -24,6 +24,7 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 - Add google fonts based on their properties by importing them and applying them at the level required
 - Multiple fonts can be applied throughout the app. Ex: One font on the top level, that can be overridden by another font that is added to one or two specific elements deep in the apps dom.
 - Image Optimization in web apps is a specialization in itself
+- Static assets like images are usually stored in the public folder
 - Adding images manually means the following needs to be optimized for manually
   - Image responsivity on different screens
   - Specification of different sizes for different screens
@@ -31,7 +32,16 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
   - Lazy loading of images outside users viewport
 - The `<Image>` Component from Next does all of this optimization by default
   - Images are lazy loaded by default
-  - They are made responsive they scale based on screen
+  - They are made responsive, they scale based on screen
   - Images served in latest formats like `WebP` and `AVIF` when supported by browsers
   - Prevents layout shift automatically when loading images
     - For this, its good practice to set image width and height in a aspect ratio identical to that of the source image
+
+3. Layouts and Pages
+
+- Next uses file-system routing, where folders are used to create nested routes
+- Each folder is a route segment that is part of the URL segment
+- Create separate UIs for each route with a `page.tsx` and `layout.tsx` file
+  - the path `/` corresponds to `app/page.tsx`, the path `/dashboard` corresponds to `app/dashboard/page.tsx`
+  - creating nested routes is done by creating folders with appropriate names and a `page.tsx` (if the segment is to be routable)
+- You can colocate logically relevant files and folders without making them routable simply by not adding a `page.tsx`
