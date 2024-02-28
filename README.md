@@ -74,3 +74,15 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 - Once the db is created the region cannot be reset - so be careful!
 - Copy the secrets generated and available in the dashboard to the appropriate .env files, keep the .env files gitignored
 - Seeding the db is adding some initial data to it
+
+6. Fetching Data
+
+- When fetching data on the client, do not query the database directly as you risk exposing DB secrets this way
+- You can interact with the DB via an API layer, which would require you to write queries
+- While interacting with relational DBs can be done with SQL or ORMS like Prisma
+- Fetching data via React Server Components is the same as fetching data onthe server, then you can skip the API layer and query the DB directly
+- Server Components support promises, allowing simpler interface to async tasks like data fetching
+- Easily allows fetching data using simple `async/await` to fetch data instead of needing to use `useEffect` or `useState` in combination with data fetching libraries like axios
+- Using Server Components without a API layer, you can write extensive queries that do all the heavy lifting on the server side directly
+  - App is much faster as you won't be doing any in-memory tasks unless it is absolutely necessary
+  - Its good practice to delegate as many jobs to the appropriate workers than to let the frontend do the heavy-lifting
