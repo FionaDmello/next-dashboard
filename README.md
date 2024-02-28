@@ -65,3 +65,12 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
     - NextJS provides the `usePathname` hook for this
     - To use hooks, the component has to be converted from a server-side rendered to a client-side rendered one
     - use `use client;` at the top of the component definition to indicate this to NextJS
+
+5. Setting up DB, deploying the app in Vercel
+
+- Connect your github, select a project to deploy, name the project and directly deploy (for a minimal deployment)
+- Everytime a branch is created, a preview of the app with the changes on the branch can be viewed in Vercel to catch possible errors before actual deployment
+- The default region in which the app is deployed is Washington D.C, so other services connected to the app should ideally be deployed close to this region for low-latency
+- Once the db is created the region cannot be reset - so be careful!
+- Copy the secrets generated and available in the dashboard to the appropriate .env files, keep the .env files gitignored
+- Seeding the db is adding some initial data to it
