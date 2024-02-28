@@ -10,6 +10,8 @@ import {
 } from '@/app/lib/data';
 
 export default async function Page() {
+  //  The following set of method calls unintentionally create a request waterfall which is not intended
+  //  Additionally, the dashboard is static - any update to the data is not reflected in the app
   const revenue = await fetchRevenue();
   const latestInvoices = await fetchLatestInvoices();
   const {
