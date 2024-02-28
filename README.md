@@ -52,19 +52,19 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
   - This causes only parts of the page to update while the layout itself is not re-rendered
   - This effect is called partial rendering
 
-  4. Navigating between Pages
+4. Navigating between Pages
 
-  - Using a `<a>` to link and navigate between pages causes a full page refresh because the code is mostly server-side rendered
-  - `<Link />` from NextJS allows for client-side navigation in JS
-  - This does not allow a page to undergo full refresh even if some components in it are server-side rendered
-    - Because of automatic code-splitting by route segments, pages become isolated
-    - If a page throws an error, the rest of the app will still work
-    - Because the app is mostly server-side rendered, the app will work reasonably even if theres a problem with one page
-    - In production, when there is a `<Link>` in the browsers viewport, NextJS prefetches the code for the linked route - making the code readily available for the user in less than a few milliseconds!
-  - UI Pattern: Show active link to indicate to user what page they are currently on
-    - NextJS provides the `usePathname` hook for this
-    - To use hooks, the component has to be converted from a server-side rendered to a client-side rendered one
-    - use `use client;` at the top of the component definition to indicate this to NextJS
+- Using a `<a>` to link and navigate between pages causes a full page refresh because the code is mostly server-side rendered
+- `<Link />` from NextJS allows for client-side navigation in JS
+- This does not allow a page to undergo full refresh even if some components in it are server-side rendered
+  - Because of automatic code-splitting by route segments, pages become isolated
+  - If a page throws an error, the rest of the app will still work
+  - Because the app is mostly server-side rendered, the app will work reasonably even if theres a problem with one page
+  - In production, when there is a `<Link>` in the browsers viewport, NextJS prefetches the code for the linked route - making the code readily available for the user in less than a few milliseconds!
+- UI Pattern: Show active link to indicate to user what page they are currently on
+  - NextJS provides the `usePathname` hook for this
+  - To use hooks, the component has to be converted from a server-side rendered to a client-side rendered one
+  - use `use client;` at the top of the component definition to indicate this to NextJS
 
 5. Setting up DB, deploying the app in Vercel
 
@@ -94,3 +94,19 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 - Parallel Data Fetching:
   - use `Promise.all()` or `Promise.allSettled()` to make data requests at the same time
   - This works smoothly except for in cases where one or two of the requests are slower than the others.
+
+7. Static and Dynamic Rendering
+
+- Static Rendering is when data fetching and rendering happens on the server at build time (when app is deployed) or during revalidation (when data cache is purged and a new data is deployed resulting in distribution and caching in CDNs)
+  - Cached sites implies faster sites
+  - Because content is cached, server load is reduced as it does not have to generate and send content for every request for the site
+  - Pre-rendered sites (statically rendered sites) are easy for search engine crawlers to index, hence making the sight SEOd
+- Static rendering is useful for UI with no data or data that is shared across users
+
+- Dynamic Rendering is when content is rendered on the server for each user at request time (when user visits the page)
+  - This provides real-time data
+  - Its easier to save user specific content, and update data based on user interaction
+  - It allows access to information available only at request time like cookies , URL search params
+- By default NextJS apps are static rendered, you have to manually opt in for dynamic rendering when required
+- Use NextJS API `unstable_noStore` in Server Components or in data fetching functions to opt out of static rendering
+- With dynamic rendering your page load is only as fast as your slowest data fetch!
