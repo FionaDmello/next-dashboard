@@ -45,3 +45,8 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
   - the path `/` corresponds to `app/page.tsx`, the path `/dashboard` corresponds to `app/dashboard/page.tsx`
   - creating nested routes is done by creating folders with appropriate names and a `page.tsx` (if the segment is to be routable)
 - You can colocate logically relevant files and folders without making them routable simply by not adding a `page.tsx`
+- `layout.tsx` is used to specify UI that is shared by multiple pages
+- The children to a layout can themselves either be pages or layouts
+- You define the part of the UI that does not change for a particular route in its respective `layout.tsx`
+  - This causes only parts of the page to update while the layout itself is not re-rendered
+  - This effect is called partial rendering
