@@ -23,3 +23,15 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 - This also causes there to be no Cumulative Layout Shift (Layout shift created by the browser initially loading the app with a fallback font, then replacing it with the custom font once the network call has been completed)
 - Add google fonts based on their properties by importing them and applying them at the level required
 - Multiple fonts can be applied throughout the app. Ex: One font on the top level, that can be overridden by another font that is added to one or two specific elements deep in the apps dom.
+- Image Optimization in web apps is a specialization in itself
+- Adding images manually means the following needs to be optimized for manually
+  - Image responsivity on different screens
+  - Specification of different sizes for different screens
+  - Prevent layout shift as images load
+  - Lazy loading of images outside users viewport
+- The `<Image>` Component from Next does all of this optimization by default
+  - Images are lazy loaded by default
+  - They are made responsive they scale based on screen
+  - Images served in latest formats like `WebP` and `AVIF` when supported by browsers
+  - Prevents layout shift automatically when loading images
+    - For this, its good practice to set image width and height in a aspect ratio identical to that of the source image
