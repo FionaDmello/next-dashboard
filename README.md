@@ -48,5 +48,20 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 - `layout.tsx` is used to specify UI that is shared by multiple pages
 - The children to a layout can themselves either be pages or layouts
 - You define the part of the UI that does not change for a particular route in its respective `layout.tsx`
+
   - This causes only parts of the page to update while the layout itself is not re-rendered
   - This effect is called partial rendering
+
+  4. Navigating between Pages
+
+  - Using a `<a>` to link and navigate between pages causes a full page refresh because the code is mostly server-side rendered
+  - `<Link />` from NextJS allows for client-side navigation in JS
+  - This does not allow a page to undergo full refresh even if some components in it are server-side rendered
+    - Because of automatic code-splitting by route segments, pages become isolated
+    - If a page throws an error, the rest of the app will still work
+    - Because the app is mostly server-side rendered, the app will work reasonably even if theres a problem with one page
+    - In production, when there is a `<Link>` in the browsers viewport, NextJS prefetches the code for the linked route - making the code readily available for the user in less than a few milliseconds!
+  - UI Pattern: Show active link to indicate to user what page they are currently on
+    - NextJS provides the `usePathname` hook for this
+    - To use hooks, the component has to be converted from a server-side rendered to a client-side rendered one
+    - use `use client;` at the top of the component definition to indicate this to NextJS
