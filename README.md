@@ -110,3 +110,23 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 - By default NextJS apps are static rendered, you have to manually opt in for dynamic rendering when required
 - Use NextJS API `unstable_noStore` in Server Components or in data fetching functions to opt out of static rendering
 - With dynamic rendering your page load is only as fast as your slowest data fetch!
+
+8. Streaming
+
+- Break down routes to "chunks", that are progessively streamed to the client from the server as and when they become ready
+- Consider each react component a "chunk" that needs to have its data prepped (fetched from the server)
+- Implement it on two levels
+  - page with a `loading.tsx`
+  - specific component with `<Suspense>`
+- If page level streaming is applied
+  - `loading.tsx`, built on top of `<Suspense>` helps create a fallback UI to show when the components are loading
+  - The statically rendered components are already made available to the user for interaction - so if other pages that are statically loaded are connected to the already ready components, the user can already navigate to them (interuptable navigation)
+  - `loading.tsx` should be placed on a level where it is applicable only to the page(s) that need time for loading; do this with route groups
+  - When you add a folder with `(<folder name>)` under a folder, the files in it become grouped but still point to the appropriate route segment, the folder name is not added to the route
+  - route grouping can also be done in other circumstances like separating application into sections or by teams for larger apps
+- If streaming a component
+  - `Suspense` allows to defer rendering parts of the application until some condition is met
+  - For this, wrap the dynamic component in `Suspense` and pass it a fallback component to show while the dynamic content loads
+  - If you can identify which one of your component is slow, you can handle loading for that component alone and make the rest of the page available to the user as soon as possible
+  - You can group multiple components in a Wrapper which can be wrapped in `<Suspense>` to create a staggered loading effect for all of them at once
+  - Its generally good practice to move all component logic compactly and use wrappers to load them staggeringly, use the previous methods if and when necessary
